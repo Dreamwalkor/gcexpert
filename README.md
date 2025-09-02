@@ -17,7 +17,7 @@
 
 ```bash
 # 1. 进入无数据库版本目录
-cd /Users/sxd/mylab/gcmcp/versions/v1_no_database
+cd ~/mylab/gcmcp/versions/v1_no_database
 
 # 2. 安装依赖
 pip install -r requirements_web.txt
@@ -147,7 +147,7 @@ PORT = 8000
 1. **升级到数据库版本**：
    ```bash
    # 返回主项目目录
-   cd /Users/sxd/mylab/gcmcp
+   cd ~/mylab/gcmcp
    
    # 使用带数据库的完整版本
    # （需要单独配置GreptimeDB）
