@@ -1,0 +1,22 @@
+[2025-08-26T15:03:29.558+0800][3.715s][info][gc,start    ] GC(0) Pause Young (Normal) (G1 Evacuation Pause)
+[2025-08-26T15:03:29.561+0800][3.718s][info][gc,task     ] GC(0) Using 4 workers of 4 for evacuation
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc,phases   ] GC(0)   Pre Evacuate Collection Set: 0.1ms
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc,phases   ] GC(0)   Evacuate Collection Set: 20.1ms
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc,heap     ] GC(0) Eden regions: 170->0(150)
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc,heap     ] GC(0) Survivor regions: 0->20(22)
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc,heap     ] GC(0) Old regions: 0->0
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc,metaspace] GC(0) Metaspace: 1234K->1234K(4096K)
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc          ] GC(0) Pause Young (Normal) (G1 Evacuation Pause) 173M->23M(512M) 24.846ms
+[2025-08-26T15:03:29.583+0800][3.740s][info][gc,cpu      ] GC(0) User=0.07s Sys=0.00s Real=0.03s
+[2025-08-26T15:04:29.584+0800][63.741s][info][gc,start   ] GC(1) Pause Young (Normal) (G1 Evacuation Pause)
+[2025-08-26T15:04:29.586+0800][63.743s][info][gc,task    ] GC(1) Using 4 workers of 4 for evacuation
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc,phases  ] GC(1)   Pre Evacuate Collection Set: 0.2ms
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc,phases  ] GC(1)   Evacuate Collection Set: 10.5ms
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc,heap    ] GC(1) Eden regions: 150->0(140)
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc,heap    ] GC(1) Survivor regions: 20->15(20)
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc,heap    ] GC(1) Old regions: 0->5
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc,metaspace] GC(1) Metaspace: 1240K->1240K(4096K)
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc         ] GC(1) Pause Young (Normal) (G1 Evacuation Pause) 173M->25M(512M) 13.2ms
+[2025-08-26T15:04:29.598+0800][63.755s][info][gc,cpu     ] GC(1) User=0.05s Sys=0.00s Real=0.01s
+[2025-08-26T15:27:20.684+0800][1434.841s][info][gc       ] GC(5098) Pause Full (G1 Compaction Pause) 510M->510M(512M) 654.933ms
+[2025-08-26T15:27:20.684+0800][1434.841s][info][gc,cpu   ] GC(5098) User=2.40s Sys=0.00s Real=0.66s

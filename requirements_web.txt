@@ -1,0 +1,10 @@
+fastapi>=0.68.0
+uvicorn[standard]>=0.15.0
+python-multipart>=0.0.5
+# MCP服务器依赖
+mcp>=1.0.0
+# 数据分析依赖
+numpy>=1.21.0
+# 测试依赖
+pytest>=6.2.0
+pytest-asyncio>=0.18.0

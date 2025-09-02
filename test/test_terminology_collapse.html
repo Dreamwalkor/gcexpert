@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>术语折叠功能测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        /* 术语说明样式 */
+        .terminology-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .section-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .toggle-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .toggle-btn.collapsed {
+            transform: rotate(-90deg);
+        }
+        
+        .term-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .term-category h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+        
+        .term-category h4::before {
+            content: "▶";
+            transition: transform 0.3s ease;
+            margin-right: 8px;
+        }
+        
+        .term-category.expanded h4::before {
+            transform: rotate(90deg);
+        }
+        
+        .term-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .term-category.expanded .term-grid {
+            max-height: 2000px; /* 足够大的值以容纳内容 */
+        }
+        
+        .term-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .term-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .term-item strong {
+            display: block;
+            color: #495057;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+        
+        .term-item p {
+            margin: 0;
+            color: #6c757d;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 术语折叠功能测试</h1>
+        
+        <!-- 术语说明部分 -->
+        <section id="terminology" class="section-card">
+            <h3 class="section-toggle">📚 术语说明 <button class="toggle-btn" id="terminologyToggle">▼</button></h3>
+            
+            <div class="terminology-content" id="terminologyContent">
+                <div class="term-category">
+                    <h4>🏗️ JVM内存结构</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>堆内存 (Heap)</strong>
+                            <p>JVM中存储对象实例的主要内存区域，是垃圾回收的主要目标。包含新生代和老年代。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Eden区</strong>
+                            <p>新生代的一部分，新创建的对象首先分配在这里。Eden区满时会触发Minor GC。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Survivor区</strong>
+                            <p>新生代的一部分，包含S0和S1两个区域，用于存放经过一次GC后仍存活的对象。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="term-category">
+                    <h4>🔄 GC类型</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>Minor GC / Young GC</strong>
+                            <p>只回收新生代的垃圾回收，频率高但停顿时间短。主要清理Eden区和Survivor区。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Major GC / Old GC</strong>
+                            <p>主要回收老年代的垃圾回收，停顿时间较长。通常伴随Minor GC一起执行。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // 页面加载时初始化术语部分折叠功能
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('[DOMContentLoaded事件触发] 初始化术语折叠功能');
+            initTerminologyCollapse();
+            initSectionToggle();
+        });
+        
+        // 初始化整个术语部分的折叠功能
+        function initSectionToggle() {
+            const toggleBtn = document.getElementById('terminologyToggle');
+            const content = document.getElementById('terminologyContent');
+            const header = toggleBtn.closest('h3');
+            
+            // 默认展开状态
+            let isExpanded = true;
+            
+            // 添加点击事件监听器到按钮和标题
+            toggleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleSection();
+            });
+            
+            header.addEventListener('click', function(e) {
+                // 如果点击的是按钮本身，则不处理标题点击事件
+                if (e.target === toggleBtn) return;
+                toggleSection();
+            });
+            
+            function toggleSection() {
+                isExpanded = !isExpanded;
+                if (isExpanded) {
+                    content.style.display = 'flex';
+                    toggleBtn.textContent = '▼';
+                    toggleBtn.classList.remove('collapsed');
+                } else {
+                    content.style.display = 'none';
+                    toggleBtn.textContent = '►';
+                    toggleBtn.classList.add('collapsed');
+                }
+            }
+        }
+        
+        // 初始化术语部分折叠功能
+        function initTerminologyCollapse() {
+            const termCategories = document.querySelectorAll('.term-category');
+            termCategories.forEach(category => {
+                const header = category.querySelector('h4');
+                const grid = category.querySelector('.term-grid');
+                
+                // 默认折叠所有术语部分
+                category.classList.remove('expanded');
+                grid.style.maxHeight = '0px';
+                
+                // 添加点击事件监听器
+                header.addEventListener('click', function() {
+                    category.classList.toggle('expanded');
+                    if (category.classList.contains('expanded')) {
+                        grid.style.maxHeight = grid.scrollHeight + 'px';
+                    } else {
+                        grid.style.maxHeight = '0px';
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

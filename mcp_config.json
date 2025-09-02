@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "gc-log-analyzer": {
+      "command": "python",
+      "args": ["/Users/sxd/mylab/gcmcp/main.py"],
+      "env": {}
+    }
+  }
+}

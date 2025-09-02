@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>术语说明部分测试</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: #f5f5f5; 
+            line-height: 1.6;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        /* 章节布局样式 */
+        .section-card {
+            background: white;
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid #007bff;
+        }
+        
+        .section-card h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        
+        /* 术语说明样式 */
+        .terminology-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .term-category {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .term-category h4 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .term-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .term-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .term-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .term-item strong {
+            display: block;
+            color: #495057;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+        
+        .term-item p {
+            margin: 0;
+            color: #6c757d;
+            line-height: 1.5;
+            font-size: 0.95em;
+        }
+        
+        /* 不同类别的颜色主题 */
+        .term-category:nth-child(1) { border-left-color: #007bff; }
+        .term-category:nth-child(2) { border-left-color: #28a745; }
+        .term-category:nth-child(3) { border-left-color: #ffc107; }
+        .term-category:nth-child(4) { border-left-color: #dc3545; }
+        .term-category:nth-child(5) { border-left-color: #6f42c1; }
+        .term-category:nth-child(6) { border-left-color: #fd7e14; }
+        .term-category:nth-child(7) { border-left-color: #20c997; }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .term-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .term-item {
+                padding: 12px;
+            }
+            
+            .term-category {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .terminology-content {
+                gap: 20px;
+            }
+            
+            .term-category h4 {
+                font-size: 1.1em;
+            }
+            
+            .term-item strong {
+                font-size: 1em;
+            }
+            
+            .term-item p {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 GC日志分析平台 - 术语说明测试</h1>
+        
+        <!-- 术语说明部分 -->
+        <section id="terminology" class="section-card">
+            <h3>📚 术语说明</h3>
+            
+            <div class="terminology-content">
+                <div class="term-category">
+                    <h4>🏗️ JVM内存结构</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>堆内存 (Heap)</strong>
+                            <p>JVM中存储对象实例的主要内存区域，是垃圾回收的主要目标。包含新生代和老年代。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Eden区</strong>
+                            <p>新生代的一部分，新创建的对象首先分配在这里。Eden区满时会触发Minor GC。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Survivor区</strong>
+                            <p>新生代的一部分，包含S0和S1两个区域，用于存放经过一次GC后仍存活的对象。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>老年代 (Old Generation)</strong>
+                            <p>存放长期存活的对象，当对象在新生代中经历多次GC后会被移到老年代。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Metaspace</strong>
+                            <p>存储类的元数据信息，如类定义、方法信息等。替代了Java 8之前的永久代。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="term-category">
+                    <h4>🔄 GC类型</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>Minor GC / Young GC</strong>
+                            <p>只回收新生代的垃圾回收，频率高但停顿时间短。主要清理Eden区和Survivor区。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Major GC / Old GC</strong>
+                            <p>主要回收老年代的垃圾回收，停顿时间较长。通常伴随Minor GC一起执行。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Full GC</strong>
+                            <p>回收整个堆内存和Metaspace的垃圾回收，停顿时间最长，应尽量避免频繁发生。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Mixed GC (G1)</strong>
+                            <p>G1垃圾回收器特有，同时回收新生代和部分老年代区域的混合回收。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Concurrent GC</strong>
+                            <p>与应用程序并发执行的垃圾回收，减少停顿时间，如CMS和G1的并发阶段。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="term-category">
+                    <h4>📊 性能指标</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>停顿时间 (Pause Time)</strong>
+                            <p>GC执行期间应用程序暂停的时间，通常以毫秒为单位。停顿时间越短，用户体验越好。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>吞吐量 (Throughput)</strong>
+                            <p>应用程序运行时间占总时间的比例。吞吐量 = 应用时间 / (应用时间 + GC时间)。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>堆利用率</strong>
+                            <p>堆内存使用量占堆总容量的百分比。过高可能导致频繁GC，过低则浪费内存。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>回收效率</strong>
+                            <p>单次GC回收的内存量占GC前内存使用量的比例，反映GC的回收效果。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>分配速率</strong>
+                            <p>应用程序每秒分配的内存量，影响GC的触发频率。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="term-category">
+                    <h4>🎯 垃圾回收器</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>G1 GC</strong>
+                            <p>低延迟垃圾回收器，适合大堆内存应用。将堆分为多个区域，可预测停顿时间。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>CMS GC</strong>
+                            <p>并发标记清除回收器，主要用于老年代，可与应用程序并发执行。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>Parallel GC</strong>
+                            <p>并行回收器，使用多线程进行垃圾回收，适合吞吐量优先的应用。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>ZGC / Shenandoah</strong>
+                            <p>超低延迟垃圾回收器，停顿时间通常在10ms以下，适合对延迟敏感的应用。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>IBM J9 GC</strong>
+                            <p>IBM JVM的垃圾回收器，包含多种策略如Scavenge、Global GC等。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="term-category">
+                    <h4>📈 统计术语</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>P50 / P90 / P99</strong>
+                            <p>百分位数统计。P90表示90%的GC停顿时间都小于等于该值，用于评估性能稳定性。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>平均值 (Average)</strong>
+                            <p>所有GC事件的算术平均值，提供整体性能的基本概览。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>最大值 (Maximum)</strong>
+                            <p>观察期间出现的最长停顿时间，反映最坏情况下的性能表现。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>标准差</strong>
+                            <p>衡量数据分散程度的指标，标准差越小说明性能越稳定。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="term-category">
+                    <h4>⚠️ 性能警报</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>长停顿警报</strong>
+                            <p>当GC停顿时间超过设定阈值时触发，通常表示需要调优GC参数。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>频繁GC警报</strong>
+                            <p>当GC频率过高时触发，可能表示堆内存不足或分配速率过快。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>内存泄漏警报</strong>
+                            <p>当堆利用率持续上升且回收效率下降时触发，可能存在内存泄漏。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>吞吐量下降警报</strong>
+                            <p>当GC时间占比过高导致应用吞吐量下降时触发。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="term-category">
+                    <h4>🔧 调优建议</h4>
+                    <div class="term-grid">
+                        <div class="term-item">
+                            <strong>堆大小调整</strong>
+                            <p>根据应用内存需求调整-Xms和-Xmx参数，避免堆过小导致频繁GC。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>GC策略选择</strong>
+                            <p>根据应用特点选择合适的垃圾回收器，如延迟敏感选G1，吞吐量优先选Parallel。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>新生代比例</strong>
+                            <p>调整新生代与老年代的比例，通常新生代占堆的1/3到1/4比较合适。</p>
+                        </div>
+                        <div class="term-item">
+                            <strong>并发线程数</strong>
+                            <p>根据CPU核心数调整GC并发线程数，提高GC效率。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

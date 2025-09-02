@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<verbosegc xmlns="http://www.ibm.com/j9/verbosegc" version="fa000e8_CMPRSS">
+<gc-start id="5" type="scavenge" contextid="4" timestamp="2025-08-12T10:30:41.848">
+  <mem-info id="6" free="38984672" total="52428800" percent="74">
+    <mem type="nursery" free="0" total="13107200" percent="0">
+      <mem type="allocate" free="0" total="6553600" percent="0" />
+      <mem type="survivor" free="0" total="6553600" percent="0" />
+    </mem>
+    <mem type="tenure" free="38984672" total="39321600" percent="99">
+      <mem type="soa" free="37018592" total="37355520" percent="99" />
+      <mem type="loa" free="1966080" total="1966080" percent="100" />
+    </mem>
+  </mem-info>
+</gc-start>
+<allocation-stats totalBytes="6886848" >
+  <allocated-bytes non-tlh="984560" tlh="5902288" />
+</allocation-stats>
+<gc-end id="8" type="scavenge" contextid="4" durationms="4.063" usertimems="11.075" systemtimems="5.067" stalltimems="31.653" timestamp="2025-08-12T10:30:41.852" activeThreads="16">
+  <mem-info id="9" free="43341360" total="52428800" percent="82">
+    <mem type="nursery" free="4356688" total="13107200" percent="33">
+      <mem type="allocate" free="4356688" total="6553600" percent="66" />
+      <mem type="survivor" free="0" total="6553600" percent="0" />
+    </mem>
+    <mem type="tenure" free="38984672" total="39321600" percent="99">
+      <mem type="soa" free="37018592" total="37355520" percent="99" />
+      <mem type="loa" free="1966080" total="1966080" percent="100" />
+    </mem>
+  </mem-info>
+</gc-end>
+<gc-start id="10" type="global" contextid="5" timestamp="2025-08-12T10:31:45.123">
+  <mem-info id="11" free="1234567" total="52428800" percent="2">
+    <mem type="tenure" free="1234567" total="39321600" percent="3" />
+  </mem-info>
+</gc-start>
+<gc-end id="12" type="global" contextid="5" durationms="120.456" timestamp="2025-08-12T10:31:45.243">
+  <mem-info id="13" free="35123456" total="52428800" percent="67">
+    <mem type="tenure" free="35123456" total="39321600" percent="89" />
+  </mem-info>
+</gc-end>
+</verbosegc>
